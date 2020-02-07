@@ -1,22 +1,10 @@
 import { Component } from '@angular/core';
-import { SearchService } from './search.service';
-import { Subject } from 'rxjs/Subject';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ],
-  providers: [SearchService]
+  selector: 'app-root',
+  templateUrl: './app.component.html'
 })
-export class AppComponent  {
-  name = 'Angular';
-  results: Object;
-  searchTerm$ = new Subject<string>();
-
-  constructor(private searchService: SearchService) {
-    this.searchService.search(this.searchTerm$)
-      .subscribe(results => {
-        this.results = results.results;
-      });
-  }
+export class AppComponent {
+  constructor(public auth: AuthenticationService) {}
 }
